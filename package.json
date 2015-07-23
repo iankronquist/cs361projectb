@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "mocha tests",
+    "test": "mocha tests.js",
     "start": "node app.js"
   },
   "repository": {
@@ -19,7 +19,9 @@
   "homepage": "https://github.com/iankronquist/cs361projectb#readme",
   "dependencies": {
     "ejs": "^2.3.3",
+    "expect.js": "^0.3.1",
     "express": "^4.13.1",
-    "mocha": "^2.2.5"
+    "mocha": "^2.2.5",
+    "request": "^2.60.0"
   }
 }
