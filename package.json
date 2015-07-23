@@ -1,0 +1,19 @@
+{
+  "name": "cs361projectb",
+  "version": "0.1.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iankronquist/cs361projectb.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iankronquist/cs361projectb/issues"
+  },
+  "homepage": "https://github.com/iankronquist/cs361projectb#readme"
+}
