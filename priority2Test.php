@@ -2,13 +2,13 @@
 ini_set('display_errors', 'On');
 
 /* to be replaced with name of appropriate document */
-require_once 'dbTesting.php';
+require_once 'priority2.php';
 
 		/* To be replaced with appropriate info */
 		$host = 'localhost';
 		$user = 'root';
 		$pass = '';
-		$db = 'kdutt';
+		$db = 'project_b';
 
 class DateTest extends \PHPUnit_Framework_TestCase
 {
@@ -68,6 +68,50 @@ class DateTest extends \PHPUnit_Framework_TestCase
 		$actual = getLastWhole(1, $mysqli);
 
 		$this->assertEquals(207, $actual);
+	}
+
+/* Test Visits */
+
+	public function testVisitsPlasma()
+	{
+		global $host, $user, $pass, $db;
+
+		$mysqli = new mysqli($host, $user, $pass, $db);
+			if ($mysqli->connect_errno) {
+				echo "Failed to connect to MySQL: (" . $mysqli->connect_errno .")" . $mysqli->connect_error;
+		}
+
+		$actual = getVisitsPlasma(1, $mysqli);
+
+		$this->assertEquals(1, $actual);	
+	}
+
+		public function testVisitsPlatelet()
+	{
+		global $host, $user, $pass, $db;
+
+		$mysqli = new mysqli($host, $user, $pass, $db);
+			if ($mysqli->connect_errno) {
+				echo "Failed to connect to MySQL: (" . $mysqli->connect_errno .")" . $mysqli->connect_error;
+		}
+
+		$actual = getVisitsPlatelets(1, $mysqli);
+
+		$this->assertEquals(1, $actual);	
+	}
+
+		public function getVisitsDRBC()
+	{
+		global $host, $user, $pass, $db;
+
+		$mysqli = new mysqli($host, $user, $pass, $db);
+			if ($mysqli->connect_errno) {
+				echo "Failed to connect to MySQL: (" . $mysqli->connect_errno .")" . $mysqli->connect_error;
+		}
+
+		$actual = getVisitsPlasma(1, $mysqli);
+
+		$this->assertEquals(1, $actual);	
 	}
 
 /*Test PLASMA 
@@ -211,11 +255,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 /* Fail times: any # days, >= 3 times */
 	public function testRBCFailAnnual()
 	{
-		$host = 'localhost';
-		$user = 'root';
-		$pass = '';
-		$db = 'kdutt';
-		
+		global $host, $user, $pass, $db;
 		$mysqli = new mysqli($host, $user, $pass, $db);
 			if ($mysqli->connect_errno) {
 				echo "Failed to connect to MySQL: (" . $mysqli->connect_errno .")" . $mysqli->connect_error;
@@ -273,17 +313,19 @@ class DateTest extends \PHPUnit_Framework_TestCase
 	}
 
 /* Fail days: < 56 days */
-	public function wholeFailDays()
+	public function testWholeFail()
 	{
 		global $host, $user, $pass, $db;
-
+		
 		$mysqli = new mysqli($host, $user, $pass, $db);
 			if ($mysqli->connect_errno) {
 				echo "Failed to connect to MySQL: (" . $mysqli->connect_errno .")" . $mysqli->connect_error;
 		}
 
-		$actual = plateletsEligible(55);
+		$actual = wholeEligible(55);
 		$this->assertEquals(false, $actual);
 
 	}
 }
+
+?>
