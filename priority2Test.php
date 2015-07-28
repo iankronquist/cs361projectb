@@ -13,7 +13,7 @@ require_once 'priority2.php';
 class DateTest extends \PHPUnit_Framework_TestCase
 {
 
-/* TEST QUERY */
+	/* TEST QUERY */
 	public function testDaysSincePlasma()
 	{
 		global $host, $user, $pass, $db;
@@ -70,7 +70,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 		$this->assertEquals(207, $actual);
 	}
 
-/* Test Visits */
+	/* Test Visits */
 
 	public function testVisitsPlasma()
 	{
@@ -114,7 +114,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 		$this->assertEquals(1, $actual);	
 	}
 
-/*Test PLASMA 
+	/*Test PLASMA 
 	Eligibile: >= 28 days, < 13 times */
 	public function testPlasmaEligible()
 	{
@@ -130,7 +130,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 
 	}
 
-/* Fail times: any # days, >= 13 times */
+	/* Fail times: any # days, >= 13 times */
 	public function testPlasmaFailAnnual()
 	{
 		global $host, $user, $pass, $db;
@@ -145,7 +145,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 
 	}
 
-/* Fail days: < 28 days, any # times */
+	/* Fail days: < 28 days, any # times */
 	public function testPlasmaFailDays()
 	{
 		global $host, $user, $pass, $db;
@@ -160,7 +160,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 
 	}
 
-/* Fail both: < 28 days, >= 13 times */
+	/* Fail both: < 28 days, >= 13 times */
 	public function testPlasmaFailBoth()
 	{
 		global $host, $user, $pass, $db;
@@ -175,8 +175,8 @@ class DateTest extends \PHPUnit_Framework_TestCase
 
 	}
 
-/* TEST PLATELETS 
- * Eligible: >= 7 days, < 24 times */
+	/* TEST PLATELETS 
+ 	Eligible: >= 7 days, < 24 times */
 	public function testPlateletsEligible()
 	{
 		global $host, $user, $pass, $db;
@@ -191,7 +191,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 
 	}
 
-/* Fail times: any # days, >= 13 times */
+	/* Fail times: any # days, >= 13 times */
 	public function testPlateletsFailAnnual()
 	{
 		global $host, $user, $pass, $db;
@@ -206,7 +206,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 
 	}
 
-/* Fail days: < 7 days and any # times */
+	/* Fail days: < 7 days and any # times */
 	public function testPlateletsFailDays()
 	{
 		global $host, $user, $pass, $db;
@@ -221,7 +221,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 
 	}
 
-/* Fail both: < 7 days, >= 24 times */
+	/* Fail both: < 7 days, >= 24 times */
 	public function testPlateletsFailBoth()
 	{
 		global $host, $user, $pass, $db;
@@ -236,8 +236,8 @@ class DateTest extends \PHPUnit_Framework_TestCase
 
 	}
 
-/* TEST DOUBLE RBC 
- * Eligible: >= 113 days, < 3 times */
+	/* TEST DOUBLE RBC 
+ 	Eligible: >= 113 days, < 3 times */
 	public function testRBCEligible()
 	{
 		global $host, $user, $pass, $db;
@@ -252,7 +252,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 
 	}
 
-/* Fail times: any # days, >= 3 times */
+	/* Fail times: any # days, >= 3 times */
 	public function testRBCFailAnnual()
 	{
 		global $host, $user, $pass, $db;
@@ -266,7 +266,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 
 	}
 
-/* Fail days: < 113 days and any # times */
+	/* Fail days: < 113 days and any # times */
 	public function testRBCFailDays()
 	{
 		global $host, $user, $pass, $db;
@@ -281,7 +281,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 
 	}
 
-/* Fail both: < 113 days, >= 3 times */
+	/* Fail both: < 113 days, >= 3 times */
 	public function testRBCFailBoth()
 	{
 		global $host, $user, $pass, $db;
@@ -296,8 +296,8 @@ class DateTest extends \PHPUnit_Framework_TestCase
 
 	}
 
-/* TEST WHOLE BLOOD 
- * Eligible: >= 56 days */
+	/* TEST WHOLE BLOOD 
+ 	Eligible: >= 56 days */
 	public function testWholeEligible()
 	{
 		global $host, $user, $pass, $db;
@@ -312,7 +312,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 
 	}
 
-/* Fail days: < 56 days */
+	/* Fail days: < 56 days */
 	public function testWholeFail()
 	{
 		global $host, $user, $pass, $db;
