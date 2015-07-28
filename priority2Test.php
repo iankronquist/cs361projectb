@@ -10,106 +10,109 @@ require_once 'priority2.php';
 		$pass = '';
 		$db = 'project_b';
 
+		$daysSinceJan1 = 208;
+		$userID = 1;
+
 class DateTest extends \PHPUnit_Framework_TestCase
 {
 
 	/* TEST QUERY */
 	public function testDaysSincePlasma()
 	{
-		global $host, $user, $pass, $db;
+		global $host, $user, $pass, $db, $daysSinceJan1, $userID;
 
 		$mysqli = new mysqli($host, $user, $pass, $db);
 			if ($mysqli->connect_errno) {
 				echo "Failed to connect to MySQL: (" . $mysqli->connect_errno .")" . $mysqli->connect_error;
 		}
 
-		$actual = getLastPlasma(1, $mysqli);
+		$actual = getLastPlasma($userID, $mysqli);
 
-		$this->assertEquals(207, $actual);
+		$this->assertEquals($daysSinceJan1, $actual);
 	}
 
 	public function testDaysSincePlatelets()
 	{
-		global $host, $user, $pass, $db;
+		global $host, $user, $pass, $db, $daysSinceJan1, $userID;
 
 		$mysqli = new mysqli($host, $user, $pass, $db);
 			if ($mysqli->connect_errno) {
 				echo "Failed to connect to MySQL: (" . $mysqli->connect_errno .")" . $mysqli->connect_error;
 		}
 
-		$actual = getLastPlatelets(1, $mysqli);
+		$actual = getLastPlatelets($userID, $mysqli);
 
-		$this->assertEquals(207, $actual);
+		$this->assertEquals($daysSinceJan1, $actual);
 	}
 
 	public function testDaysSinceRBC()
 	{
-		global $host, $user, $pass, $db;
+		global $host, $user, $pass, $db, $daysSinceJan1, $userID;
 
 		$mysqli = new mysqli($host, $user, $pass, $db);
 			if ($mysqli->connect_errno) {
 				echo "Failed to connect to MySQL: (" . $mysqli->connect_errno .")" . $mysqli->connect_error;
 		}
 
-		$actual = getLastDoubleRBC(1, $mysqli);
+		$actual = getLastDoubleRBC($userID, $mysqli);
 
-		$this->assertEquals(207, $actual);
+		$this->assertEquals($daysSinceJan1, $actual);
 	}
 
 	public function testDaysSinceWhole()
 	{
-		global $host, $user, $pass, $db;
+		global $host, $user, $pass, $db, $daysSinceJan1, $userID;
 
 		$mysqli = new mysqli($host, $user, $pass, $db);
 			if ($mysqli->connect_errno) {
 				echo "Failed to connect to MySQL: (" . $mysqli->connect_errno .")" . $mysqli->connect_error;
 		}
 
-		$actual = getLastWhole(1, $mysqli);
+		$actual = getLastWhole($userID, $mysqli);
 
-		$this->assertEquals(207, $actual);
+		$this->assertEquals($daysSinceJan1, $actual);
 	}
 
 	/* Test Visits */
 
 	public function testVisitsPlasma()
 	{
-		global $host, $user, $pass, $db;
+		global $host, $user, $pass, $db, $userID;
 
 		$mysqli = new mysqli($host, $user, $pass, $db);
 			if ($mysqli->connect_errno) {
 				echo "Failed to connect to MySQL: (" . $mysqli->connect_errno .")" . $mysqli->connect_error;
 		}
 
-		$actual = getVisitsPlasma(1, $mysqli);
+		$actual = getVisitsPlasma($userID, $mysqli);
 
 		$this->assertEquals(1, $actual);	
 	}
 
 		public function testVisitsPlatelet()
 	{
-		global $host, $user, $pass, $db;
+		global $host, $user, $pass, $db, $userID;
 
 		$mysqli = new mysqli($host, $user, $pass, $db);
 			if ($mysqli->connect_errno) {
 				echo "Failed to connect to MySQL: (" . $mysqli->connect_errno .")" . $mysqli->connect_error;
 		}
 
-		$actual = getVisitsPlatelets(1, $mysqli);
+		$actual = getVisitsPlatelets($userID, $mysqli);
 
 		$this->assertEquals(1, $actual);	
 	}
 
 		public function getVisitsDRBC()
 	{
-		global $host, $user, $pass, $db;
+		global $host, $user, $pass, $db, $userID;
 
 		$mysqli = new mysqli($host, $user, $pass, $db);
 			if ($mysqli->connect_errno) {
 				echo "Failed to connect to MySQL: (" . $mysqli->connect_errno .")" . $mysqli->connect_error;
 		}
 
-		$actual = getVisitsPlasma(1, $mysqli);
+		$actual = getVisitsPlasma($userID, $mysqli);
 
 		$this->assertEquals(1, $actual);	
 	}
