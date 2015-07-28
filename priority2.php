@@ -303,7 +303,7 @@ function wholeEligible($days)
 	  	<div id=countdown>
 
 	  		<?php
-				$id = 3;
+				$id = 1;
 
 				$numDays = getLastPlasma($id, $mysqli);
 				$numTimes = getVisitsPlasma($id, $mysqli);
