@@ -1,4 +1,4 @@
-DROP TABLE IF EXIST p2_users;
+DROP TABLE IF EXISTS p2_users;
 
 CREATE TABLE p2_users (
     id int NOT NULL AUTO_INCREMENT,
