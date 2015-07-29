@@ -7,7 +7,7 @@ CREATE TABLE donations (
     location varchar(255),
     blood_type varchar(255),
     donation_type varchar(255),
-    amount int
+    amount int,
 
     UNIQUE (id),
     PRIMARY KEY (id),
