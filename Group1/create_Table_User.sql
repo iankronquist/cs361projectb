@@ -6,19 +6,21 @@ CREATE TABLE p2_users (
     password varchar(255),
     fname varchar(255),
     lname varchar(255),
-    
+
     age int,
     sex varchar(255),
     height int,
     weight int,
     location varchar(255),
-    
+
     last_plasma date,
     last_platelets date,
     last_drbloodcells date,
     last_wholeblood date,
-    
-    
+
+    last_login date,
+
+
     count_plasma int,
     count_platelets int,
     count_drbloodcells int,
