@@ -1,4 +1,4 @@
-DROP TABLE IF EXIST donations;
+DROP TABLE IF EXISTS donations;
 
 CREATE TABLE donations (
     id int NOT NULL AUTO_INCREMENT,
