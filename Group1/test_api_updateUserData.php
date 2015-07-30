@@ -1,7 +1,7 @@
 <?php
     ini_set('display_errors', 'On');
 
-    require_once 'priority1.php';
+    require_once 'api_updateUserData.php';
 
 class PriorityOne extends \PHPUnit_Framework_TestCase
 {

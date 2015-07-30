@@ -1,8 +1,8 @@
 DROP TABLE IF EXISTS p2_users;
 
 CREATE TABLE p2_users (
-    id int NOT NULL AUTO_INCREMENT,
-    username varchar(255),
+    id int NOT NULL AUTO_INCREMENT UNIQUE,
+    username varchar(255) UNIQUE,
     password varchar(255),
     fname varchar(255),
     lname varchar(255),
@@ -25,6 +25,5 @@ CREATE TABLE p2_users (
     count_platelets int,
     count_drbloodcells int,
     count_wholeblood int,
-    UNIQUE (id),
     PRIMARY KEY (id)
 )ENGINE=InnoDB;
