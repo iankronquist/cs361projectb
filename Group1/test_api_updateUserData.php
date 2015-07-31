@@ -1,10 +1,29 @@
 <?php
     ini_set('display_errors', 'On');
-
-    require_once 'api_updateUserData.php';
+    require_once('api_updateUserData.php');
 
 class PriorityOne extends \PHPUnit_Framework_TestCase
 {
+    
+    public function getConnection() {
+        $dbhost = 'localhost';
+        $dbname = 'testdb';
+        $dbuser = 'root';
+        $dbpass = '';
+
+        //try to connect to database
+        $conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
+        if ($conn->connect_errno) {
+            echo "Failed to connect to database: (" . $conn->connect_errno . ") " . $conn->connect_error;
+            console.log("error connecting to db");
+            die("error");
+        }
+        
+        return $conn;
+    }
+    
+    
+ 
     /**********************************************************************************
     * AGE TESTS
     ***********************************************************************************/
@@ -16,7 +35,7 @@ class PriorityOne extends \PHPUnit_Framework_TestCase
         $id = 1;
         
         //get result
-        $result = updateUser($conn, 'age', $age_value, $id);
+        $result = updateUser($this->getConnection(), 'age', $age_value, $id);
         
         //compare result to expected
         $expected = true;
@@ -29,7 +48,7 @@ class PriorityOne extends \PHPUnit_Framework_TestCase
         $age_value = 22;
         $id = 'fail';
         
-        $result = updateUser($conn, 'age', $age_value, $id);
+        $result = updateUser($this->getConnection(), 'age', $age_value, $id);
         
         $expected = false;
         $this->assertEquals($result, $expected);
@@ -42,7 +61,7 @@ class PriorityOne extends \PHPUnit_Framework_TestCase
         $sex_value = 'Male';
         $id = 1;
         
-        $result = updateUser($conn, 'sex', $sex_value, $id);
+        $result = updateUser($this->getConnection(), 'sex', $sex_value, $id);
         
         $expected = true;
         $this->assertEquals($result, $expected);
@@ -54,7 +73,7 @@ class PriorityOne extends \PHPUnit_Framework_TestCase
         $sex_value = 'Male';
         $id = 'fail';
         
-        $result = updateUser($conn, 'sex', $sex_value, $id);
+        $result = updateUser($this->getConnection(), 'sex', $sex_value, $id);
         
         $expected = false;
         $this->assertEquals($result, $expected);
@@ -71,7 +90,7 @@ class PriorityOne extends \PHPUnit_Framework_TestCase
         $height_value = 200;
         $id = 1;
         
-        $result = updateUser($conn, 'height', $height_value, $id);
+        $result = updateUser($this->getConnection(), 'height', $height_value, $id);
         
         $expected = true;
         $this->assertEquals($result, $expected);
@@ -83,7 +102,7 @@ class PriorityOne extends \PHPUnit_Framework_TestCase
         $height_value = 'fail';
         $id = 1;
         
-        $result = updateUser($conn, 'height', $height_value, $id);
+        $result = updateUser($this->getConnection(), 'height', $height_value, $id);
         
         $expected = false;
         $this->assertEquals($result, $expected);
@@ -95,7 +114,7 @@ class PriorityOne extends \PHPUnit_Framework_TestCase
         $height_value = 0;
         $id = 1;
         
-        $result = updateUser($conn, 'height', $height_value, $id);
+        $result = updateUser($this->getConnection(), 'height', $height_value, $id);
         
         $expected = false;
         $this->assertEquals($result, $expected);
@@ -107,7 +126,7 @@ class PriorityOne extends \PHPUnit_Framework_TestCase
         $height_value = -1;
         $id = 1;
         
-        $result = updateUser($conn, 'height', $height_value, $id);
+        $result = updateUser($this->getConnection(), 'height', $height_value, $id);
         
         $expected = false;
         $this->assertEquals($result, $expected);
@@ -123,7 +142,7 @@ class PriorityOne extends \PHPUnit_Framework_TestCase
         $weight_value = 200;
         $id = 1;
         
-        $result = updateUser($conn, 'weight', $weight_value, $id);
+        $result = updateUser($this->getConnection(), 'weight', $weight_value, $id);
         
         $expected = true;
         $this->assertEquals($result, $expected);
@@ -135,7 +154,7 @@ class PriorityOne extends \PHPUnit_Framework_TestCase
         $weight_value = 'fail';
         $id = 1;
         
-        $result = updateUser($conn, 'weight', $weight_value, $id);
+        $result = updateUser($this->getConnection(), 'weight', $weight_value, $id);
         
         $expected = false;
         $this->assertEquals($result, $expected);
@@ -147,7 +166,7 @@ class PriorityOne extends \PHPUnit_Framework_TestCase
         $weight_value = 0;
         $id = 1;
         
-        $result = updateUser($conn, 'weight', $weight_value, $id);
+        $result = updateUser($this->getConnection(), 'weight', $weight_value, $id);
         
         $expected = false;
         $this->assertEquals($result, $expected);
@@ -159,7 +178,7 @@ class PriorityOne extends \PHPUnit_Framework_TestCase
         $weight_value = -1;
         $id = 1;
         
-        $result = updateUser($conn, 'weight', $weight_value, $id);
+        $result = updateUser($this->getConnection(), 'weight', $weight_value, $id);
         
         $expected = false;
         $this->assertEquals($result, $expected);
@@ -173,7 +192,7 @@ class PriorityOne extends \PHPUnit_Framework_TestCase
         $location_value = 'NY';
         $id = 1;
         
-        $result = updateUser($conn, 'location', $location_value, $id);
+        $result = updateUser($this->getConnection(), 'location', $location_value, $id);
         
         $expected = true;
         $this->assertEquals($result, $expected);
@@ -185,7 +204,7 @@ class PriorityOne extends \PHPUnit_Framework_TestCase
         $location_value = 'N/A';
         $id = 1;
         
-        $result = updateUser($conn, 'location', $location_value, $id);
+        $result = updateUser($this->getConnection(), 'location', $location_value, $id);
         
         $expected = true;
         $this->assertEquals($result, $expected);
@@ -196,7 +215,7 @@ class PriorityOne extends \PHPUnit_Framework_TestCase
         $location_value = 123;
         $id = 1;
         
-        $result = updateUser($conn, 'location', $location_value, $id);
+        $result = updateUser($this->getConnection(), 'location', $location_value, $id);
         
         $expected = false;
         $this->assertEquals($result, $expected);
@@ -211,7 +230,7 @@ class PriorityOne extends \PHPUnit_Framework_TestCase
         $blood_date = '2015-06-20'; // YYYY-MM-DD
         $id = 1;
         
-        $result = updateUser($conn, 'last_plasma', $blood_date, $id);
+        $result = updateUser($this->getConnection(), 'last_plasma', $blood_date, $id);
         
         $expected = true;
         $this->assertEquals($result, $expected);
@@ -222,7 +241,7 @@ class PriorityOne extends \PHPUnit_Framework_TestCase
         $blood_date = '2015-06-96';
         $id = 1;
         
-        $result = updateUser($conn, 'last_plasma', $blood_date, $id);
+        $result = updateUser($this->getConnection(), 'last_plasma', $blood_date, $id);
         
         $expected = false;
         $this->assertEquals($result, $expected);
@@ -237,7 +256,7 @@ class PriorityOne extends \PHPUnit_Framework_TestCase
         $blood_date = '2015-06-20'; // YYYY-MM-DD
         $id = 1;
         
-        $result = updateUser($conn, 'last_platelets', $blood_date, $id);
+        $result = updateUser($this->getConnection(), 'last_platelets', $blood_date, $id);
         
         $expected = true;
         $this->assertEquals($result, $expected);
@@ -248,7 +267,7 @@ class PriorityOne extends \PHPUnit_Framework_TestCase
         $blood_date = '2015-06-96';
         $id = 1;
         
-        $result = updateUser($conn, 'last_platelets', $blood_date, $id);
+        $result = updateUser($this->getConnection(), 'last_platelets', $blood_date, $id);
         
         $expected = false;
         $this->assertEquals($result, $expected);
@@ -263,18 +282,18 @@ class PriorityOne extends \PHPUnit_Framework_TestCase
         $blood_date = '2015-06-20'; // YYYY-MM-DD
         $id = 1;
         
-        $result = updateUser($conn, 'last_drbloodcells', $blood_date, $id);
+        $result = updateUser($this->getConnection(), 'last_drbloodcells', $blood_date, $id);
         
         $expected = true;
         $this->assertEquals($result, $expected);
     }
     
-    public function test_UpdatePlateletsInvalidInput()
+    public function test_UpdateDRBloodCellsInvalidInput()
     {
         $blood_date = '2015-06-96';
         $id = 1;
         
-        $result = updateUser($conn, 'last_drbloodcells', $blood_date, $id);
+        $result = updateUser($this->getConnection(), 'last_drbloodcells', $blood_date, $id);
         
         $expected = false;
         $this->assertEquals($result, $expected);
@@ -289,7 +308,7 @@ class PriorityOne extends \PHPUnit_Framework_TestCase
         $blood_date = '2015-06-20'; // YYYY-MM-DD
         $id = 1;
         
-        $result = updateUser($conn, 'last_wholeblood', $blood_date, $id);
+        $result = updateUser($this->getConnection(), 'last_wholeblood', $blood_date, $id);
         
         $expected = true;
         $this->assertEquals($result, $expected);
@@ -300,12 +319,12 @@ class PriorityOne extends \PHPUnit_Framework_TestCase
         $blood_date = '2015-06-96';
         $id = 1;
         
-        $result = updateUser($conn, 'last_wholeblood', $blood_date, $id);
+        $result = updateUser($this->getConnection(), 'last_wholeblood', $blood_date, $id);
         
         $expected = false;
         $this->assertEquals($result, $expected);
     }
-    
+ 
 }
 
 ?>
