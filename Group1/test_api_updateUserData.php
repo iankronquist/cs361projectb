@@ -22,7 +22,6 @@ class PriorityOne extends \PHPUnit_Framework_TestCase
         return $conn;
     }
     
-    
  
     /**********************************************************************************
     * AGE TESTS
@@ -45,8 +44,8 @@ class PriorityOne extends \PHPUnit_Framework_TestCase
     public function test_UpdateAgeInvalidInput()
     {
        
-        $age_value = 22;
-        $id = 'fail';
+        $age_value = 'string';
+        $id = 1;
         
         $result = updateUser($this->getConnection(), 'age', $age_value, $id);
         
@@ -58,7 +57,7 @@ class PriorityOne extends \PHPUnit_Framework_TestCase
     public function test_UpdateSexValidInput()
     {
        
-        $sex_value = 'Male';
+        $sex_value = 'male';
         $id = 1;
         
         $result = updateUser($this->getConnection(), 'sex', $sex_value, $id);
@@ -70,8 +69,8 @@ class PriorityOne extends \PHPUnit_Framework_TestCase
     public function test_UpdateSexInvalidInput()
     {
        
-        $sex_value = 'Male';
-        $id = 'fail';
+        $sex_value = 'some_other_string';
+        $id = 1;
         
         $result = updateUser($this->getConnection(), 'sex', $sex_value, $id);
         

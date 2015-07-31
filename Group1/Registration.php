@@ -82,6 +82,12 @@
                         <input type="text" class="form-control"  id="r_lname" name="r_lname"/>
                     </div>
 
+                    <div class="input-group">
+                        <label>Gender:</label>
+                        <label class="radio-inline"><input type="radio" name="r_sex" value="male" />male</label>
+                        <label class="radio-inline"><input type="radio" name="r_sex" value="female" />female</label>
+                    </div>
+                        
                     <input type="submit" class="btn btn-default" value="Register" id="registerButton" name="r_submit"/>
                 </div></form>
             </div>
