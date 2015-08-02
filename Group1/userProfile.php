@@ -26,9 +26,6 @@ $last_platelets = ($row['last_platelets'] != null) ? date('m/d/Y', strtotime($ro
 $last_drbloodcells = ($row['last_drbloodcells'] != null) ? date('m/d/Y', strtotime($row['last_drbloodcells'])) : null;
 $last_wholeblood = ($row['last_wholeblood'] != null) ? date('m/d/Y', strtotime($row['last_wholeblood'])) : null;
 
-$stmt = "SELECT * FROM p2_users WHERE id='$userID'";
-$result = $conn->query($stmt);
-$row = $result->fetch_array(MYSQLI_ASSOC);
 
 ?>
 
