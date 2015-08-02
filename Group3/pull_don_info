@@ -1,5 +1,5 @@
 <?php
-        $dbc = mysqli_connect('oniddb.cws.oregonstate.edu', 'hammarlp-db', 'DLuATHw6rjHTJ7jA', 'hammarlp-db') or
+        $dbc = mysqli_connect('oniddb.cws.oregonstate.edu', 'hammarlp-db', 'PASSWORD', 'hammarlp-db') or
                       die('Error connecting to MySQL server.');
 
         $id = 0;
