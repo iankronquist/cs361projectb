@@ -1,0 +1,46 @@
+<?php
+        $dbc = mysqli_connect('oniddb.cws.oregonstate.edu', 'hammarlp-db', 'DLuATHw6rjHTJ7jA', 'hammarlp-db') or
+                      die('Error connecting to MySQL server.');
+
+        $id = 0;
+
+        $query = "SELECT * FROM donations WHERE '$id'=id";
+        //$query = "INSERT INTO android_im_account (username, password) VALUES('$username', '$password')";
+
+
+        if(!mysqli_query($dbc, $query)){
+              die('Failed');
+        }
+        $result=mysqli_query($dbc, $query);
+
+        while($row = mysqli_fetch_array($result)) {
+                echo 'id: ' . $row['id'] . '<br/>';
+                echo 'user_id: ' . $row['user_id'] . '<br/>';
+                echo 'date_given: ' . $row['date_given'] . '<br/>';
+                echo 'location: ' . $row['location'] . '<br/>';
+                echo 'blood_type: ' . $row['blood_type'] . '<br/>';
+                echo 'donation_type: ' . $row['donation_type'] . '<br/>';
+                echo 'amount: ' . $row['amount'] . '<br/>';
+                if($row['used']){
+                        echo 'date_used: ' . $row['date_used'] . '<br/>';
+                }
+
+        }
+
+        $query2 = "SELECT * FROM p2_users WHERE '$id'=id";
+        if(!mysqli_query($dbc, $query2)){
+                die('Failed');
+        }
+        $result2 = mysqli_query($dbc, $query2);
+
+        while($row2 = mysqli_fetch_array($result2)) {
+               echo 'name: ' . $row2['fname'] . '<br/>';
+               echo 'name: ' . $row2['lname'] . '<br/>';
+               echo 'username: ' . '(' . $row2['username'] . ')' . '<br/>';
+        }
+
+       mysqli_close($dbc);
+
+//echo "Hi!"
+
+?>
