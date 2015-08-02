@@ -40,7 +40,7 @@ class PriorityOne extends \PHPUnit_Framework_TestCase
         $expected = true;
         $this->assertEquals($result, $expected);
     }
-    
+
     public function test_UpdateAgeInvalidInput()
     {
        
