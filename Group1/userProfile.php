@@ -26,6 +26,9 @@ $last_platelets = ($row['last_platelets'] != null) ? date('m/d/Y', strtotime($ro
 $last_drbloodcells = ($row['last_drbloodcells'] != null) ? date('m/d/Y', strtotime($row['last_drbloodcells'])) : null;
 $last_wholeblood = ($row['last_wholeblood'] != null) ? date('m/d/Y', strtotime($row['last_wholeblood'])) : null;
 
+$stmt = "SELECT * FROM p2_users WHERE id='$userID'";
+$result = $conn->query($stmt);
+$row = $result->fetch_array(MYSQLI_ASSOC);
 
 ?>
 
@@ -55,7 +58,7 @@ $last_wholeblood = ($row['last_wholeblood'] != null) ? date('m/d/Y', strtotime($
     </head>
     <body>
         <div class="container">
-           <a href="logout.php">LOGOUT</a> | PROFILE PAGE | Hello <?php echo "$fname [$username | $userID]"; ?>
+           <a href="logout.php">LOGOUT</a>| <a href="../Group2/priority2.php">DONATION ELIGIBILITY</a> | PROFILE PAGE | Hello <?php echo "$fname [$username | $userID]"; ?>
         </div>  
         
         <div class="container">

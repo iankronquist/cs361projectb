@@ -1,5 +1,16 @@
 <?php
 ini_set('display_errors', 'On');
+if (session_status() === PHP_SESSION_NONE){session_start();}
+
+if(isset($_SESSION['auth']) && $_SESSION['auth'] == 1) {
+    $username = $_SESSION['username'];
+    $fname = $_SESSION['fname'];
+    $userID = $_SESSION['userID'];
+} else {
+    header("Location: Group1/Registration.php");
+    exit();
+}
+
 // include 'dbinclude.php';
 
 $host = 'localhost';
@@ -17,8 +28,8 @@ function getLastPlasma($arg_1, $mysqli)
 {
 	$id = $arg_1;
 
-	if(!$check = $mysqli->prepare("SELECT DATEDIFF(CURDATE(), last_plasma_date) 
-		FROM users WHERE id=?")) {
+	if(!$check = $mysqli->prepare("SELECT DATEDIFF(CURDATE(), last_plasma) 
+		FROM p2_users WHERE id=?")) {
 		echo "Prepare failed: (" . $check->errno . ")" . $check->error;
 	} else {
 		$check->bind_param("i", $id);
@@ -45,8 +56,8 @@ function getLastPlatelets($arg_1, $mysqli)
 {
 	$id = $arg_1;
 
-	if(!$check = $mysqli->prepare("SELECT DATEDIFF(CURDATE(), last_platelets_date) 
-		FROM users WHERE id=?")) {
+	if(!$check = $mysqli->prepare("SELECT DATEDIFF(CURDATE(), last_platelets) 
+		FROM p2_users WHERE id=?")) {
 		echo "Prepare failed: (" . $check->errno . ")" . $check->error;
 	} else {
 		$check->bind_param("i", $id);
@@ -73,8 +84,8 @@ function getLastDoubleRBC($arg_1, $mysqli)
 {
 	$id = $arg_1;
 
-	if(!$check = $mysqli->prepare("SELECT DATEDIFF(CURDATE(), last_double_rbc_date) 
-		FROM users WHERE id=?")) {
+	if(!$check = $mysqli->prepare("SELECT DATEDIFF(CURDATE(), last_drbloodcells) 
+		FROM p2_users WHERE id=?")) {
 		echo "Prepare failed: (" . $check->errno . ")" . $check->error;
 	} else {
 		$check->bind_param("i", $id);
@@ -101,8 +112,8 @@ function getLastWhole($arg_1, $mysqli)
 {
 	$id = $arg_1;
 
-	if(!$check = $mysqli->prepare("SELECT DATEDIFF(CURDATE(), last_whole_date) 
-		FROM users WHERE id=?")) {
+	if(!$check = $mysqli->prepare("SELECT DATEDIFF(CURDATE(), last_wholeblood) 
+		FROM p2_users WHERE id=?")) {
 		echo "Prepare failed: (" . $check->errno . ")" . $check->error;
 	} else {
 		$check->bind_param("i", $id);
@@ -129,7 +140,7 @@ function getVisitsPlasma($arg_1, $mysqli)
 {
 	$id = $arg_1;
 
-	if(!$check = $mysqli->prepare("SELECT VisitPlasma FROM users WHERE id=?")) {
+	if(!$check = $mysqli->prepare("SELECT count_plasma FROM p2_users WHERE id=?")) {
 		echo "Prepare failed: (" . $check->errno . ")" . $check->error;
 	} else {
 		$check->bind_param("i", $id);
@@ -155,7 +166,7 @@ function getVisitsPlatelets($arg_1, $mysqli)
 {
 	$id = $arg_1;
 
-	if(!$check = $mysqli->prepare("SELECT VisitPlatelet FROM users WHERE id=?")) {
+	if(!$check = $mysqli->prepare("SELECT count_platelets FROM p2_users WHERE id=?")) {
 		echo "Prepare failed: (" . $check->errno . ")" . $check->error;
 	} else {
 		$check->bind_param("i", $id);
@@ -181,7 +192,7 @@ function getVisitsDRBC($arg_1, $mysqli)
 {
 	$id = $arg_1;
 
-	if(!$check = $mysqli->prepare("SELECT VisitDRBC FROM users WHERE id=?")) {
+	if(!$check = $mysqli->prepare("SELECT count_drbloodcells FROM p2_users WHERE id=?")) {
 		echo "Prepare failed: (" . $check->errno . ")" . $check->error;
 	} else {
 		$check->bind_param("i", $id);
@@ -295,15 +306,39 @@ function wholeEligible($days)
 
 <!DOCTYPE html>
 <html>
-  <head><title>Priority 2 - Eligibility Countdowns</title></head>
+  <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title></title>
+
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/mystyle.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+   		 <title>Priority 2 - Eligibility Countdowns</title>
+
+  </head>
   <link rel="stylesheet" type="text/css" href="priority2.css">
     <body>
-    	<div id="header"><h1>Countdown to Next Donation</h1></div>
+        <div class="container">
+           <a href="../Group1/logout.php">LOGOUT</a> | PROFILE PAGE | Hello <?php echo "$fname [$username | $userID]"; ?>
+        </div>  
+    	<div id="header"><h1>Countdown to Next Donation:</h1></div>
 
 	  	<div id=countdown>
 
 	  		<?php
-				$id = 1;
+				$id = $_SESSION['userID'];
 
 				$numDays = getLastPlasma($id, $mysqli);
 				$numTimes = getVisitsPlasma($id, $mysqli);
@@ -311,9 +346,9 @@ function wholeEligible($days)
 			?>
 
 		</div>
-		<div id=break><br><br></div>
+		<div id="break"><br><br></div>
 
-		<div id=countdown>
+		<div id="countdown">
 
 			<?php
 				$numDays = getLastPlatelets($id, $mysqli);
@@ -322,9 +357,9 @@ function wholeEligible($days)
 			?>
 
 		</div>
-		<div id=break><br><br></div>
+		<div id="break"><br><br></div>
 
-		<div id=countdown>
+		<div id="countdown">
 
 			<?php
 				$numDays = getLastDoubleRBC($id, $mysqli);
@@ -333,9 +368,9 @@ function wholeEligible($days)
 			?>
 
 		</div>
-		<div id=break><br><br></div>
+		<div id="break"><br><br></div>
 
-		<div id=countdown>
+		<div id="countdown">
 
 			<?php
 				$numDays = getLastWhole($id, $mysqli);
@@ -343,6 +378,12 @@ function wholeEligible($days)
 			?>
 
 		</div>
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/script.js"></script>
 
 	</body>
 </html>
