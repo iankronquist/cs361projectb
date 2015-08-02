@@ -49,6 +49,7 @@ $(document).ready( function() {
                     $("#login-form :input").serializeArray(),
                     function(data) {
                         var result = jQuery.parseJSON(data);
+                        console.log(result);
                         if(result["status"] == "Success") {
                             window.location.href = "userProfile.php";   
                         } else {

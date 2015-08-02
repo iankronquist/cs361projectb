@@ -58,7 +58,7 @@ $row = $result->fetch_array(MYSQLI_ASSOC);
     </head>
     <body>
         <div class="container">
-           <a href="logout.php">LOGOUT</a> | PROFILE PAGE | Hello <?php echo "$fname [$username | $userID]"; ?>
+           <a href="logout.php">LOGOUT</a>| <a href="../Group2/priority2.php">DONATION ELIGIBILITY</a> | PROFILE PAGE | Hello <?php echo "$fname [$username | $userID]"; ?>
         </div>  
         
         <div class="container">

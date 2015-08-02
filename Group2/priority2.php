@@ -1,5 +1,16 @@
 <?php
 ini_set('display_errors', 'On');
+if (session_status() === PHP_SESSION_NONE){session_start();}
+
+if(isset($_SESSION['auth']) && $_SESSION['auth'] == 1) {
+    $username = $_SESSION['username'];
+    $fname = $_SESSION['fname'];
+    $userID = $_SESSION['userID'];
+} else {
+    header("Location: Group1/Registration.php");
+    exit();
+}
+
 // include 'dbinclude.php';
 
 $host = 'localhost';
@@ -17,8 +28,8 @@ function getLastPlasma($arg_1, $mysqli)
 {
 	$id = $arg_1;
 
-	if(!$check = $mysqli->prepare("SELECT DATEDIFF(CURDATE(), last_plasma_date) 
-		FROM users WHERE id=?")) {
+	if(!$check = $mysqli->prepare("SELECT DATEDIFF(CURDATE(), last_plasma) 
+		FROM p2_users WHERE id=?")) {
 		echo "Prepare failed: (" . $check->errno . ")" . $check->error;
 	} else {
 		$check->bind_param("i", $id);
@@ -45,8 +56,8 @@ function getLastPlatelets($arg_1, $mysqli)
 {
 	$id = $arg_1;
 
-	if(!$check = $mysqli->prepare("SELECT DATEDIFF(CURDATE(), last_platelets_date) 
-		FROM users WHERE id=?")) {
+	if(!$check = $mysqli->prepare("SELECT DATEDIFF(CURDATE(), last_platelets) 
+		FROM p2_users WHERE id=?")) {
 		echo "Prepare failed: (" . $check->errno . ")" . $check->error;
 	} else {
 		$check->bind_param("i", $id);
@@ -73,8 +84,8 @@ function getLastDoubleRBC($arg_1, $mysqli)
 {
 	$id = $arg_1;
 
-	if(!$check = $mysqli->prepare("SELECT DATEDIFF(CURDATE(), last_double_rbc_date) 
-		FROM users WHERE id=?")) {
+	if(!$check = $mysqli->prepare("SELECT DATEDIFF(CURDATE(), last_drbloodcells) 
+		FROM p2_users WHERE id=?")) {
 		echo "Prepare failed: (" . $check->errno . ")" . $check->error;
 	} else {
 		$check->bind_param("i", $id);
@@ -101,8 +112,8 @@ function getLastWhole($arg_1, $mysqli)
 {
 	$id = $arg_1;
 
-	if(!$check = $mysqli->prepare("SELECT DATEDIFF(CURDATE(), last_whole_date) 
-		FROM users WHERE id=?")) {
+	if(!$check = $mysqli->prepare("SELECT DATEDIFF(CURDATE(), last_wholeblood) 
+		FROM p2_users WHERE id=?")) {
 		echo "Prepare failed: (" . $check->errno . ")" . $check->error;
 	} else {
 		$check->bind_param("i", $id);
@@ -129,7 +140,7 @@ function getVisitsPlasma($arg_1, $mysqli)
 {
 	$id = $arg_1;
 
-	if(!$check = $mysqli->prepare("SELECT VisitPlasma FROM users WHERE id=?")) {
+	if(!$check = $mysqli->prepare("SELECT count_plasma FROM p2_users WHERE id=?")) {
 		echo "Prepare failed: (" . $check->errno . ")" . $check->error;
 	} else {
 		$check->bind_param("i", $id);
@@ -155,7 +166,7 @@ function getVisitsPlatelets($arg_1, $mysqli)
 {
 	$id = $arg_1;
 
-	if(!$check = $mysqli->prepare("SELECT VisitPlatelet FROM users WHERE id=?")) {
+	if(!$check = $mysqli->prepare("SELECT count_platelets FROM p2_users WHERE id=?")) {
 		echo "Prepare failed: (" . $check->errno . ")" . $check->error;
 	} else {
 		$check->bind_param("i", $id);
@@ -181,7 +192,7 @@ function getVisitsDRBC($arg_1, $mysqli)
 {
 	$id = $arg_1;
 
-	if(!$check = $mysqli->prepare("SELECT VisitDRBC FROM users WHERE id=?")) {
+	if(!$check = $mysqli->prepare("SELECT count_drbloodcells FROM p2_users WHERE id=?")) {
 		echo "Prepare failed: (" . $check->errno . ")" . $check->error;
 	} else {
 		$check->bind_param("i", $id);
@@ -303,7 +314,7 @@ function wholeEligible($days)
 	  	<div id=countdown>
 
 	  		<?php
-				$id = 1;
+				$id = $_SESSION['userID'];
 
 				$numDays = getLastPlasma($id, $mysqli);
 				$numTimes = getVisitsPlasma($id, $mysqli);

@@ -1,3 +1,4 @@
+
 DROP TABLE IF EXISTS p2_users;
 
 CREATE TABLE p2_users (
@@ -27,3 +28,5 @@ CREATE TABLE p2_users (
     count_wholeblood int,
     PRIMARY KEY (id)
 )ENGINE=InnoDB;
+
+INSERT INTO p2_users VALUES(2, "gopher","gopher","gopher","gopher",5,"gopher",5,5,"California", "2006-02-15", "2006-02-15", "2006-02-15", "2006-02-15", "2006-02-15",1,1,1,1);

@@ -1,6 +1,6 @@
 <?php
     $dbhost = 'localhost';
-    $dbname = 'testdb';
+    $dbname = 'project_b';
     $dbuser = 'root';
     $dbpass = '';
 
