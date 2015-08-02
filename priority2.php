@@ -13,8 +13,6 @@ if ($mysqli->connect_errno) {
 	echo "Failed to connect to MySQL: (" . $mysqli->connect_errno .")" . $mysqli->connect_error;
 }
 
-echo '<h1>Database Testing Document</h1>';
-
 function getLastPlasma($arg_1, $mysqli)
 {
 	$id = $arg_1;
@@ -33,7 +31,7 @@ function getLastPlasma($arg_1, $mysqli)
 			} 
 
 			while ($check->fetch()) {
-				echo '<h2>Days since last PLASMA donation: ' . "$retDate" . '</h2>';
+				echo 'Days since last PLASMA donation: ' . "$retDate" . '<br>';
 				$retDate;
 			}
 		}
@@ -61,7 +59,7 @@ function getLastPlatelets($arg_1, $mysqli)
 			} 
 
 			while ($check->fetch()) {
-				echo '<h2>Days since last PLATELET donation: ' . "$retDate" . '</h2>';
+				echo 'Days since last PLATELET donation: ' . "$retDate" . '<br>';
 				$retDate;
 			}
 		}
@@ -89,7 +87,7 @@ function getLastDoubleRBC($arg_1, $mysqli)
 			} 
 
 			while ($check->fetch()) {
-				echo '<h2>Days since last DOUBLE RBC donation: ' . "$retDate" . '</h2>';
+				echo 'Days since last DOUBLE RBC donation: ' . "$retDate" . '<br>';
 				$retDate;
 			}
 		}
@@ -117,7 +115,7 @@ function getLastWhole($arg_1, $mysqli)
 			} 
 
 			while ($check->fetch()) {
-				echo '<h2>Days since last WHOLE donation: ' . "$retDate" . '</h2>';
+				echo 'Days since last WHOLE donation: ' . "$retDate" . '<br><br>';
 				$retDate;
 			}
 		}
@@ -144,7 +142,7 @@ function getVisitsPlasma($arg_1, $mysqli)
 			} 
 
 			while ($check->fetch()) {
-				echo '<h2>Number of visits' . "$numVisits" . '</h2>';
+				echo 'Number of plasma donations: ' . "$numVisits" . '<br><br>';
 				$numVisits;
 			}
 		}
@@ -170,7 +168,7 @@ function getVisitsPlatelets($arg_1, $mysqli)
 			} 
 
 			while ($check->fetch()) {
-				echo '<h2>Number of visits' . "$numVisits" . '</h2>';
+				echo 'Number of platelet donations: ' . "$numVisits" . '<br><br>';
 				$numVisits;
 			}
 		}
@@ -196,7 +194,7 @@ function getVisitsDRBC($arg_1, $mysqli)
 			} 
 
 			while ($check->fetch()) {
-				echo '<h2>Number of visits' . "$numVisits" . '</h2>';
+				echo 'Number of double RBC donations: ' . "$numVisits" . '<br><br>';
 				$numVisits;
 			}
 		}
@@ -218,17 +216,17 @@ function plasmaEligible($days, $times)
 		*/
 	if ($days < 28 && $times <= 13)
 	{
-		echo "You will be eligible to donate plasma in $daysLeft days.";
-		echo "You may donate plasma $timesLeft more times this year.";
+		echo "You will be eligible to donate plasma in <strong>$daysLeft days</strong>." . '<br>';
+		echo "You may donate plasma <strong>$timesLeft</strong> more time(s) this year." . '<br>';
 		return false;
 	} else if ($days < 28 && $times >= 13) {
-		echo "You have filled your plasma donation quota for the year.";
+		echo "You have filled your plasma donation quota for the year." . '<br>';
 		return false;
 	} else if ($days >= 28 && $times >= 13) {
-		echo "You have filled your plasma donation quota for the year.";
+		echo "You have filled your plasma donation quota for the year." . '<br>';
 		return false;
 	} else {
-		echo "You are now eligible to donate plasma!";
+		echo "You are now eligible to donate plasma!" . '<br>';
 		return true;
 	}
 }
@@ -240,17 +238,17 @@ function plateletsEligible($days, $times)
 
 	if ($days < 7  && $times <= 24 )
 	{
-		echo "You will be eligible to donate platelets in $daysLeft days.";
-		echo "You may donate platelets $timesLeft more times this year.";
+		echo "You will be eligible to donate platelets in <strong>$daysLeft days</strong>." . '<br>';
+		echo "You may donate platelets <strong>$timesLeft</strong> more time(s) this year." . '<br>';
 		return false;
 	} else if ($days < 7  && $times >= 24 ) {
-		echo "You have filled your platelets donation quota for the year.";
+		echo "You have filled your platelets donation quota for the year." . '<br>';
 		return false;
 	} else if ($days >= 7  && $times >= 24 ) {
-		echo "You have filled your platelets donation quota for the year.";
+		echo "You have filled your platelets donation quota for the year." . '<br>';
 		return false;
 	} else {
-		echo "You are now eligible to donate plasma!";
+		echo "You are now eligible to donate platelets!" . '<br>';
 		return true;
 	}
 }
@@ -262,17 +260,17 @@ function rbcEligible($days, $times)
 
 	if ($days < 113 && $times <= 3)
 	{
-		echo "You will be eligible to donate Double Red Cells in $daysLeft days.";
-		echo "You may donate Double Red Cells $timesLeft more times this year.";
+		echo "You will be eligible to donate Double Red Cells in <strong>$daysLeft days</strong>." . '<br>';
+		echo "You may donate Double Red Cells <strong>$timesLeft</strong> more time(s) this year." . '<br>';
 		return false;
 	} else if ($days < 113 && $times >= 3) {
-		echo "You have filled your Double Red Cells donation quota for the year.";
+		echo "You have filled your Double Red Cells donation quota for the year." . '<br>';
 		return false;
 	} else if ($days >= 113 && $times >= 3) {
-		echo "You have filled your Double Red Cells donation quota for the year.";
+		echo "You have filled your Double Red Cells donation quota for the year." . '<br>';
 		return false;
 	} else {
-		echo "You are now eligible to donate plasma!";
+		echo "You are now eligible to donate double red blood cells!" . '<br>';
 		return true;
 	}
 }
@@ -283,30 +281,68 @@ function wholeEligible($days)
 
 	if ($days >= 56)
 	{
-		echo "You are now eligible to donate whole blood!";
+		echo "You are now eligible to donate whole blood!" . '<br>';
 		return true;
 	}
 	else
 	{
-		echo "You will be eligible to donate whole blood in $daysLeft days.";
+		echo "You will be eligible to donate whole blood in <strong>$daysLeft days</strong>." . '<br>';
 		return false;
 	}
 	
 }
-
-$id = 1;
-
-$numDays = getLastPlasma($id, $mysqli);
-
-echo "Returned date: $numDays";
-$numDays = getLastPlatelets($id, $mysqli);
-
-echo "Returned date: $numDays";
-$numDays = getLastDoubleRBC($id, $mysqli);
-
-echo "Returned date: $numDays";
-$numDays = getLastWhole($id, $mysqli);
-
-echo "Returned date: $numDays";
-
 ?>
+
+<!DOCTYPE html>
+<html>
+  <head><title>Priority 2 - Eligibility Countdowns</title></head>
+  <link rel="stylesheet" type="text/css" href="priority2.css">
+    <body>
+    	<div id="header"><h1>Countdown to Next Donation</h1></div>
+
+	  	<div id=countdown>
+
+	  		<?php
+				$id = 1;
+
+				$numDays = getLastPlasma($id, $mysqli);
+				$numTimes = getVisitsPlasma($id, $mysqli);
+				plasmaEligible($numDays, $numTimes);
+			?>
+
+		</div>
+		<div id=break><br><br></div>
+
+		<div id=countdown>
+
+			<?php
+				$numDays = getLastPlatelets($id, $mysqli);
+				$numTimes = getVisitsPlatelets($id, $mysqli);
+				plateletsEligible($numDays, $numTimes);
+			?>
+
+		</div>
+		<div id=break><br><br></div>
+
+		<div id=countdown>
+
+			<?php
+				$numDays = getLastDoubleRBC($id, $mysqli);
+				$numTimes = getVisitsDRBC($id, $mysqli);
+				rbcEligible($numDays, $numTimes);
+			?>
+
+		</div>
+		<div id=break><br><br></div>
+
+		<div id=countdown>
+
+			<?php
+				$numDays = getLastWhole($id, $mysqli);
+				wholeEligible($numDays);
+			?>
+
+		</div>
+
+	</body>
+</html>

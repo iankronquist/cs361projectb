@@ -1,0 +1,20 @@
+#countdown {
+	border: 8px red;
+	border-style: ridge;
+	border-radius: 20px;
+	width: 50%;
+	font-size: 140%;
+	padding: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	float: center;
+	text-align: center;
+}
+
+#break {
+	background-color: white;
+}
+
+#header {
+	text-align: center;
+}
