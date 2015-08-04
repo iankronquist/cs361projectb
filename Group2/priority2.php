@@ -12,8 +12,6 @@ if(isset($_SESSION['auth']) && $_SESSION['auth'] == 1) {
     exit();
 }
 
-echo "this is the location: " . $location;
-// include 'dbinclude.php';
 
 $host = 'localhost';
 $user = 'root';
@@ -25,6 +23,8 @@ $mysqli = new mysqli($host, $user, $pass, $db);
 if ($mysqli->connect_errno) {
 	echo "Failed to connect to MySQL: (" . $mysqli->connect_errno .")" . $mysqli->connect_error;
 }
+
+
 
 function getLastPlasma($arg_1, $mysqli)
 {
@@ -306,8 +306,11 @@ function wholeEligible($days)
 	
 }
 
-function plasmaSupply($location, $eligibility)
+
+function plasmaSupply($locationInput, $eligibility, $mysqli)
 {
+	$location = $locationInput;
+
 	if ($eligibility == true)
 	{
 		$response = NULL;
@@ -323,37 +326,89 @@ function plasmaSupply($location, $eligibility)
 				echo "Execute failed: (" . $mysqli->errno . ")" . $mysqli->error;
 			} 
 			else {
-				$retDate = NULL;
+				if ($response < 6) {
 
-				if (!$check->bind_result($response)) {
-					echo "Binding output parameters failed: (" . $check->errno . ")" . $check->error;
-				} 
-
-				while ($check->fetch()) {
-					echo 'Days since last PLASMA donation: ' . "$retDate" . '<br>';
-					$retDate;
+					echo $location . " is low on plasma!";
+					return true;
 				}
 			}
 		}
 
-		if ($response == true) {
 
-			echo $location . " is low on blood!";
-			return true;
+	}
+	else
+	{
+		return false;	
+	}	
+}
+
+
+
+function plateletSupply($locationInput, $eligibility, $mysqli)
+{
+		$location = $locationInput;
+
+	if ($eligibility == true)
+	{
+		$response = NULL;
+
+		if(!$check = $mysqli->prepare("SELECT days_platelets
+		FROM supply WHERE location=?")) {
+		echo "Prepare failed: (" . $check->errno . ")" . $check->error;
+		} 
+
+		else {
+			$check->bind_param("s", $location);
+			if(!$check->execute()) {
+				echo "Execute failed: (" . $mysqli->errno . ")" . $mysqli->error;
+			} 
+			else {
+				if ($response < 6) {
+
+					echo $location . " is low on plasma!";
+					return true;
+				}
+			}
+		}
+
+	}
+	else
+	{
+		return false;	
+	}	
+}
+
+function bloodSupply($locationInput, $eligibility, $mysqli)
+{
+		$location = $locationInput;
+
+	if ($eligibility == true)
+	{
+		$response = NULL;
+
+		if(!$check = $mysqli->prepare("SELECT days_whole
+		FROM supply WHERE location=?")) {
+		echo "Prepare failed: (" . $check->errno . ")" . $check->error;
+		} 
+
+		else {
+			$check->bind_param("s", $location);
+			if(!$check->execute()) {
+				echo "Execute failed: (" . $mysqli->errno . ")" . $mysqli->error;
+			} 
+			else {
+				if ($response < 6) {
+
+					echo $location . " is low on red blood cells!";
+					return true;
+				}
+			}
 		}
 	}
-
-	return false;
-}
-
-function plateletSupply($location, $eligibility)
-{
-	return true;
-}
-
-function bloodSupply($location, $eligibility)
-{
-	return true;
+	else
+	{
+		return false;	
+	}	
 }
 
 ?>
@@ -396,7 +451,8 @@ function bloodSupply($location, $eligibility)
 
 				$numDays = getLastPlasma($id, $mysqli);
 				$numTimes = getVisitsPlasma($id, $mysqli);
-				plasmaEligible($numDays, $numTimes);
+				$eligibility = plasmaEligible($numDays, $numTimes);
+				plasmaSupply($location, $eligibility, $mysqli);
 			?>
 
 		</div>
@@ -408,7 +464,7 @@ function bloodSupply($location, $eligibility)
 				$numDays = getLastPlatelets($id, $mysqli);
 				$numTimes = getVisitsPlatelets($id, $mysqli);
 				$eligibility = plateletsEligible($numDays, $numTimes);
-				plasmaSupply($location, $eligibility);
+				plateletSupply($location, $eligibility, $mysqli);
 			?>
 
 		</div>
@@ -420,6 +476,7 @@ function bloodSupply($location, $eligibility)
 				$numDays = getLastDoubleRBC($id, $mysqli);
 				$numTimes = getVisitsDRBC($id, $mysqli);
 				$eligibility = rbcEligible($numDays, $numTimes);
+				bloodSupply($location, $eligibility, $mysqli);
 			?>
 
 		</div>
@@ -430,6 +487,7 @@ function bloodSupply($location, $eligibility)
 			<?php
 				$numDays = getLastWhole($id, $mysqli);
 				$eligibility = wholeEligible($numDays);
+				bloodSupply($location, $eligibility, $mysqli);
 			?>
 
 		</div>
