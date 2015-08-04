@@ -336,7 +336,7 @@ function plasmaSupply($location, $eligibility)
 			}
 		}
 
-		if $response == true{
+		if ($response == true) {
 
 			echo $location . " is low on blood!";
 			return true;
@@ -344,6 +344,16 @@ function plasmaSupply($location, $eligibility)
 	}
 
 	return false;
+}
+
+function plateletSupply($location, $eligibility)
+{
+	return true;
+}
+
+function bloodSupply($location, $eligibility)
+{
+	return true;
 }
 
 ?>

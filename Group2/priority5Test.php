@@ -120,7 +120,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 	// Tests for when there is ample supply
 
 	//When donor is eligible for plasma donation BUT there is ample supply
-	public function testPlasmaSupply ()
+	public function testPlasmaOverSupply ()
 	{
 		global $host, $user, $pass, $db, $notNeedyLocation;
 
@@ -136,7 +136,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 	}
 
 	//When donor is NOT eligible for plasma donation AND there is ample supply
-	public function testPlasmaNotSupply ()
+	public function testPlasmaNotOverSupply ()
 	{
 		global $host, $user, $pass, $db, $notNeedyLocation;
 
@@ -152,7 +152,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 	}
 
 	//When donor is eligible for platelet donation AND there is ample supply
-	public function testPlateletSupply ()
+	public function testPlateletOverSupply ()
 	{
 		global $host, $user, $pass, $db, $notNeedyLocation;
 
@@ -168,7 +168,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 	}
 
 	//When donor is NOT eligible for platelet donation AND there is ample supply
-	public function testPlateletNotSupply ()
+	public function testPlateletNotOverSupply ()
 	{
 		global $host, $user, $pass, $db, $notNeedyLocation;
 
@@ -184,7 +184,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 	}
 
 	//When donor is eligible for blood donation AND there is ample supply
-	public function testBloodSupply ()
+	public function testBloodOverSupply ()
 	{
 		global $host, $user, $pass, $db, $notNeedyLocation;
 
@@ -200,7 +200,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 	}
 
 		//When donor is NOT eligible for blood donation AND there is ample supply
-	public function testBloodNotSupply ()
+	public function testBloodNotOverSupply ()
 	{
 		global $host, $user, $pass, $db, $notNeedyLocation;
 
