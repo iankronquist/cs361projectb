@@ -130,7 +130,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 			echo "Failed to connect to MySQL: (" . $mysqli->connect_errno .")" . $mysqli->connect_error;
 		}
 
-		$actual = plasmaSupply($needyLocation, true);
+		$actual = plasmaSupply($notNeedyLocation, true);
 
 		$this->assertEquals(false, $actual);
 	}
@@ -146,7 +146,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 			echo "Failed to connect to MySQL: (" . $mysqli->connect_errno .")" . $mysqli->connect_error;
 		}
 
-		$actual = plasmaSupply($needyLocation, false);
+		$actual = plasmaSupply($notNeedyLocation, false);
 
 		$this->assertEquals(false, $actual);
 	}
