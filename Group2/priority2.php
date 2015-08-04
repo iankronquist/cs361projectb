@@ -6,11 +6,13 @@ if(isset($_SESSION['auth']) && $_SESSION['auth'] == 1) {
     $username = $_SESSION['username'];
     $fname = $_SESSION['fname'];
     $userID = $_SESSION['userID'];
+    $location = $_SESSION['location'];
 } else {
     header("Location: Group1/Registration.php");
     exit();
 }
 
+echo "this is the location: " . $location;
 // include 'dbinclude.php';
 
 $host = 'localhost';
@@ -238,6 +240,7 @@ function plasmaEligible($days, $times)
 		return false;
 	} else {
 		echo "You are now eligible to donate plasma!" . '<br>';
+
 		return true;
 	}
 }
@@ -331,7 +334,7 @@ function wholeEligible($days)
   <link rel="stylesheet" type="text/css" href="priority2.css">
     <body>
         <div class="container">
-           <a href="../Group1/logout.php">LOGOUT</a> | PROFILE PAGE | Hello <?php echo "$fname [$username | $userID]"; ?>
+           <a href="../Group1/logout.php">LOGOUT</a> | <a href = "../Group1/userProfile.php">PROFILE PAGE</a> | Hello <?php echo "$fname [$username | $userID]"; ?>
         </div>  
     	<div id="header"><h1>Countdown to Next Donation:</h1></div>
 

@@ -11,10 +11,11 @@ $username = isset($_POST['l_username']) ? $conn->real_escape_string($_POST['l_us
 $password = isset($_POST['l_password']) ? $conn->real_escape_string($_POST['l_password']) : null;
 $userID = null;
 $fname = null;
+$location = null;
 
 if($username && $password){
     //check table
-    $stmt = $conn->prepare("SELECT id, fname FROM p2_users WHERE username=? AND password=? LIMIT 1");
+    $stmt = $conn->prepare("SELECT id, fname, location FROM p2_users WHERE username=? AND password=? LIMIT 1");
     $stmt->bind_param('ss', $username, $password);
     if($stmt->execute()){
         $stmt->store_result();
@@ -27,11 +28,12 @@ if($username && $password){
             if (session_status() === PHP_SESSION_NONE){session_start();}
             $_SESSION['auth'] = 1;
             
-            $stmt->bind_result($userID, $fname);
+            $stmt->bind_result($userID, $fname, $location);
             while($stmt->fetch()) {
                 $_SESSION['username'] = $username;
                 $_SESSION['fname'] = $fname;
                 $_SESSION['userID'] = $userID;
+                $_SESSION['location'] = $location;
             }
             
             $stmt->free_result();
