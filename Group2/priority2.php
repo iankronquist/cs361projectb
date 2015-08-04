@@ -305,6 +305,47 @@ function wholeEligible($days)
 	}
 	
 }
+
+function plasmaSupply($location, $eligibility)
+{
+	if ($eligibility == true)
+	{
+		$response = NULL;
+
+		if(!$check = $mysqli->prepare("SELECT days_plasma
+		FROM supply WHERE location=?")) {
+		echo "Prepare failed: (" . $check->errno . ")" . $check->error;
+		} 
+
+		else {
+			$check->bind_param("s", $location);
+			if(!$check->execute()) {
+				echo "Execute failed: (" . $mysqli->errno . ")" . $mysqli->error;
+			} 
+			else {
+				$retDate = NULL;
+
+				if (!$check->bind_result($response)) {
+					echo "Binding output parameters failed: (" . $check->errno . ")" . $check->error;
+				} 
+
+				while ($check->fetch()) {
+					echo 'Days since last PLASMA donation: ' . "$retDate" . '<br>';
+					$retDate;
+				}
+			}
+		}
+
+		if $response == true{
+
+			echo $location . " is low on blood!";
+			return true;
+		}
+	}
+
+	return false;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -356,7 +397,8 @@ function wholeEligible($days)
 			<?php
 				$numDays = getLastPlatelets($id, $mysqli);
 				$numTimes = getVisitsPlatelets($id, $mysqli);
-				plateletsEligible($numDays, $numTimes);
+				$eligibility = plateletsEligible($numDays, $numTimes);
+				plasmaSupply($location, $eligibility);
 			?>
 
 		</div>
@@ -367,7 +409,7 @@ function wholeEligible($days)
 			<?php
 				$numDays = getLastDoubleRBC($id, $mysqli);
 				$numTimes = getVisitsDRBC($id, $mysqli);
-				rbcEligible($numDays, $numTimes);
+				$eligibility = rbcEligible($numDays, $numTimes);
 			?>
 
 		</div>
@@ -377,7 +419,7 @@ function wholeEligible($days)
 
 			<?php
 				$numDays = getLastWhole($id, $mysqli);
-				wholeEligible($numDays);
+				$eligibility = wholeEligible($numDays);
 			?>
 
 		</div>
