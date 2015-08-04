@@ -2,15 +2,15 @@
 ini_set('display_errors', 'On');
 if (session_status() === PHP_SESSION_NONE){session_start();}
 
-if(isset($_SESSION['auth']) && $_SESSION['auth'] == 1) {
-    $username = $_SESSION['username'];
-    $fname = $_SESSION['fname'];
-    $userID = $_SESSION['userID'];
-    $location = $_SESSION['location'];
-} else {
-    header("Location: Group1/Registration.php");
-    exit();
-}
+// if(isset($_SESSION['auth']) && $_SESSION['auth'] == 1) {
+//     $username = $_SESSION['username'];
+//     $fname = $_SESSION['fname'];
+//     $userID = $_SESSION['userID'];
+//     $location = $_SESSION['location'];
+// } else {
+//     header("Location: Group1/Registration.php");
+//     exit();
+// }
 
 
 $host = 'localhost';
@@ -326,7 +326,17 @@ function plasmaSupply($locationInput, $eligibility, $mysqli)
 				echo "Execute failed: (" . $mysqli->errno . ")" . $mysqli->error;
 			} 
 			else {
-				if ($response < 6) {
+
+				$supply = NULL;
+				if (!$check->bind_result($supply)) {
+					echo "Binding output parameters failed: (" . $check->errno . ")" . $check->error;
+				} 
+
+				while ($check->fetch()) {
+					$response = $supply;
+				}
+
+				if ($supply < 6) {
 
 					echo $location . " is low on plasma!";
 					return true;
@@ -336,10 +346,8 @@ function plasmaSupply($locationInput, $eligibility, $mysqli)
 
 
 	}
-	else
-	{
+
 		return false;	
-	}	
 }
 
 
@@ -363,7 +371,16 @@ function plateletSupply($locationInput, $eligibility, $mysqli)
 				echo "Execute failed: (" . $mysqli->errno . ")" . $mysqli->error;
 			} 
 			else {
-				if ($response < 6) {
+				$supply = NULL;
+				if (!$check->bind_result($supply)) {
+					echo "Binding output parameters failed: (" . $check->errno . ")" . $check->error;
+				} 
+
+				while ($check->fetch()) {
+					$response = $supply;
+				}
+
+				if ($supply < 6) {
 
 					echo $location . " is low on plasma!";
 					return true;
@@ -372,10 +389,9 @@ function plateletSupply($locationInput, $eligibility, $mysqli)
 		}
 
 	}
-	else
-	{
+
 		return false;	
-	}	
+	
 }
 
 function bloodSupply($locationInput, $eligibility, $mysqli)
@@ -397,18 +413,26 @@ function bloodSupply($locationInput, $eligibility, $mysqli)
 				echo "Execute failed: (" . $mysqli->errno . ")" . $mysqli->error;
 			} 
 			else {
-				if ($response < 6) {
+				$supply = NULL;
+				if (!$check->bind_result($supply)) {
+					echo "Binding output parameters failed: (" . $check->errno . ")" . $check->error;
+				} 
 
-					echo $location . " is low on red blood cells!";
+				while ($check->fetch()) {
+					$response = $supply;
+				}
+
+				if ($supply < 6) {
+
+					echo $location . " is low on whole blood!";
 					return true;
 				}
 			}
 		}
 	}
-	else
-	{
+
 		return false;	
-	}	
+
 }
 
 ?>

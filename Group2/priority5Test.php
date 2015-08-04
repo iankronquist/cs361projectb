@@ -31,7 +31,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 			echo "Failed to connect to MySQL: (" . $mysqli->connect_errno .")" . $mysqli->connect_error;
 		}
 
-		$actual = plasmaSupply($needyLocation, true);
+		$actual = plasmaSupply($needyLocation, true, $mysqli);
 
 		$this->assertEquals(true, $actual);
 	}
@@ -47,7 +47,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 			echo "Failed to connect to MySQL: (" . $mysqli->connect_errno .")" . $mysqli->connect_error;
 		}
 
-		$actual = plasmaSupply($needyLocation, false);
+		$actual = plasmaSupply($needyLocation, false, $mysqli);
 
 		$this->assertEquals(false, $actual);
 	}
@@ -63,7 +63,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 			echo "Failed to connect to MySQL: (" . $mysqli->connect_errno .")" . $mysqli->connect_error;
 		}
 
-		$actual = plateletSupply($needyLocation, true);
+		$actual = plateletSupply($needyLocation, true, $mysqli);
 
 		$this->assertEquals(true, $actual);
 	}
@@ -79,7 +79,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 			echo "Failed to connect to MySQL: (" . $mysqli->connect_errno .")" . $mysqli->connect_error;
 		}
 
-		$actual = plateletSupply($needyLocation, false);
+		$actual = plateletSupply($needyLocation, false, $mysqli);
 
 		$this->assertEquals(false, $actual);
 	}
@@ -95,7 +95,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 			echo "Failed to connect to MySQL: (" . $mysqli->connect_errno .")" . $mysqli->connect_error;
 		}
 
-		$actual = bloodSupply($needyLocation, true);
+		$actual = bloodSupply($needyLocation, true, $mysqli);
 
 		$this->assertEquals(true, $actual);
 	}
@@ -111,7 +111,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 			echo "Failed to connect to MySQL: (" . $mysqli->connect_errno .")" . $mysqli->connect_error;
 		}
 
-		$actual = bloodSupply($needyLocation, false);
+		$actual = bloodSupply($needyLocation, false, $mysqli);
 
 		$this->assertEquals(false, $actual);
 	}
@@ -130,7 +130,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 			echo "Failed to connect to MySQL: (" . $mysqli->connect_errno .")" . $mysqli->connect_error;
 		}
 
-		$actual = plasmaSupply($notNeedyLocation, true);
+		$actual = plasmaSupply($notNeedyLocation, true, $mysqli);
 
 		$this->assertEquals(false, $actual);
 	}
@@ -146,7 +146,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 			echo "Failed to connect to MySQL: (" . $mysqli->connect_errno .")" . $mysqli->connect_error;
 		}
 
-		$actual = plasmaSupply($notNeedyLocation, false);
+		$actual = plasmaSupply($notNeedyLocation, false, $mysqli);
 
 		$this->assertEquals(false, $actual);
 	}
@@ -162,7 +162,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 			echo "Failed to connect to MySQL: (" . $mysqli->connect_errno .")" . $mysqli->connect_error;
 		}
 
-		$actual = plateletSupply($notNeedyLocation, true);
+		$actual = plateletSupply($notNeedyLocation, true, $mysqli);
 
 		$this->assertEquals(false, $actual);
 	}
@@ -178,7 +178,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 			echo "Failed to connect to MySQL: (" . $mysqli->connect_errno .")" . $mysqli->connect_error;
 		}
 
-		$actual = plateletSupply($notNeedyLocation, false);
+		$actual = plateletSupply($notNeedyLocation, false, $mysqli);
 
 		$this->assertEquals(false, $actual);
 	}
@@ -194,7 +194,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 			echo "Failed to connect to MySQL: (" . $mysqli->connect_errno .")" . $mysqli->connect_error;
 		}
 
-		$actual = bloodSupply($notNeedyLocation, true);
+		$actual = bloodSupply($notNeedyLocation, true, $mysqli);
 
 		$this->assertEquals(false, $actual);
 	}
@@ -210,7 +210,7 @@ class DateTest extends \PHPUnit_Framework_TestCase
 			echo "Failed to connect to MySQL: (" . $mysqli->connect_errno .")" . $mysqli->connect_error;
 		}
 
-		$actual = bloodSupply($notNeedyLocation, false);
+		$actual = bloodSupply($notNeedyLocation, false, $mysqli);
 
 		$this->assertEquals(false, $actual);
 	}
