@@ -57,10 +57,7 @@ $row = $result->fetch_array(MYSQLI_ASSOC);
         
     </head>
     <body>
-        <div class="container">
-           <a href="logout.php">LOGOUT</a>| <a href="../Group2/priority2.php">DONATION ELIGIBILITY</a> | PROFILE PAGE | Hello <?php echo "$fname [$username | $userID]"; ?>
-        </div>  
-        
+        <?php require_once('navbar.php') ?>
         <div class="container">
             <div class="panel panel-default">
                 <div class="panel-heading"> BAsic User Info </div>

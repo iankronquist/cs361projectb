@@ -13,7 +13,33 @@ function setInputDate(stringDate, inputTagName) {
 
 $(document).ready( function() {
     
-     
+    //handler for viewing state blood supply
+    $("#select_stateSupply").change(function () {
+        var option_value = $("#select_stateSupply").val() ;
+        var action_url = $("#form_getBloodSupplyByState").attr("action");
+        $.get( action_url, { state: option_value } )
+            .done(function( data ) {
+                var result = jQuery.parseJSON(data);
+                var bloodinfo = result["result"];
+                if(result["status"] == "Success") {
+                    $("#state_val").html(bloodinfo[1]);
+                    $("#typeA_val").html(bloodinfo[2]);
+                    $("#typeB_val").html(bloodinfo[3]);
+                    $("#typeAB_val").html(bloodinfo[4]);
+                    $("#typeO_val").html(bloodinfo[5]);
+                    $("#wholeblood_val").html(bloodinfo[6]);
+                    $("#platelets_val").html(bloodinfo[7]);
+                    $("#drblood_val").html(bloodinfo[8]);
+                    $("#plasma_val").html(bloodinfo[9]); 
+                } else {
+                    return false;
+                }
+        });
+        return false;
+    })
+    
+    
+    
     //fields
     $(".updateUserFields").keyup( function () {
         var postData = {};
@@ -28,8 +54,6 @@ $(document).ready( function() {
         console.log(postData);
         $.post("api_updateUserData.php", postData);
     })
-    
-    
     
 
     //login

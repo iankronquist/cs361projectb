@@ -1,6 +1,6 @@
 <?php
     $dbhost = 'localhost';
-    $dbname = 'project_b';
+    $dbname = 'testdb';
     $dbuser = 'root';
     $dbpass = '';
 
@@ -11,4 +11,6 @@
         console.log("error connecting to db");
         die("error");
     }
+
+    $mysqli = $conn; //if anyone used a different connection variable, declare here
 ?>
