@@ -1,27 +1,17 @@
 <?php
 ini_set('display_errors', 'On');
+
+require_once('../Group1/connection.php');
 if (session_status() === PHP_SESSION_NONE){session_start();}
 
-// if(isset($_SESSION['auth']) && $_SESSION['auth'] == 1) {
-//     $username = $_SESSION['username'];
-//     $fname = $_SESSION['fname'];
-//     $userID = $_SESSION['userID'];
-//     $location = $_SESSION['location'];
-// } else {
-//     header("Location: Group1/Registration.php");
-//     exit();
-// }
-
-
-$host = 'localhost';
-$user = 'root';
-$pass = '';
-$db = 'project_b';
-
-
-$mysqli = new mysqli($host, $user, $pass, $db);
-if ($mysqli->connect_errno) {
-	echo "Failed to connect to MySQL: (" . $mysqli->connect_errno .")" . $mysqli->connect_error;
+if(isset($_SESSION['auth']) && $_SESSION['auth'] == 1) {
+    $username = $_SESSION['username'];
+    $fname = $_SESSION['fname'];
+    $userID = $_SESSION['userID'];
+    $location = $_SESSION['location'];
+} else {
+    header("Location: Group1/Registration.php");
+    exit();
 }
 
 
@@ -463,14 +453,13 @@ function bloodSupply($locationInput, $eligibility, $mysqli)
   </head>
   <link rel="stylesheet" type="text/css" href="priority2.css">
     <body>
-        <div class="container">
-           <a href="../Group1/logout.php">LOGOUT</a> | <a href = "../Group1/userProfile.php">PROFILE PAGE</a> | Hello <?php echo "$fname [$username | $userID]"; ?>
-        </div>  
+    	<?php require_once('..\Group1\navbar.php') ?>
     	<div id="header"><h1>Countdown to Next Donation:</h1></div>
 
 	  	<div id=countdown>
 
 	  		<?php
+
 				$id = $_SESSION['userID'];
 
 				$numDays = getLastPlasma($id, $mysqli);

@@ -8,7 +8,7 @@ require_once 'priority2.php';
 		$host = 'localhost';
 		$user = 'root';
 		$pass = '';
-		$db = 'project_b';
+		$db = 'testdb';
 
 		$daysSinceJan1 = 208;
 		$userID = 1;

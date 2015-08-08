@@ -9,7 +9,7 @@ require_once 'priority2.php';
 		$host = 'localhost';
 		$user = 'root';
 		$pass = '';
-		$db = 'project_b';
+		$db = 'testdb';
 
 		// variables to pass to test functions
 
