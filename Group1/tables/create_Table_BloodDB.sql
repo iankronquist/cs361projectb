@@ -16,10 +16,10 @@ CREATE TABLE bloodDB (
 )ENGINE=InnoDB;
 
 INSERT INTO bloodDB (state, blood_type_A, blood_type_B, blood_type_AB, blood_type_O, wholeblood, platelets, drbloodcells, plasma)
-VALUES  ("NY", 500, 500, 500, 500, 600, 500, 300, 500), 
-        ("MD", 300, 200, 500, 300, 600, 300, 500, 200),
-        ("CA", 500, 500, 200, 500, 600, 500, 300, 500),
-        ("VA", 300, 500, 500, 300, 200, 600, 500, 200),
-        ("DC", 500, 300, 500, 500, 200, 500, 300, 600)
+VALUES  ("NY", 5, 5, 5, 5, 6, 5, 3, 5), 
+        ("MD", 3, 2, 5, 3, 6, 3, 5, 2),
+        ("CA", 5, 5, 2, 5, 6, 5, 3, 5),
+        ("VA", 3, 5, 5, 3, 2, 6, 5, 2),
+        ("DC", 5, 3, 5, 5, 2, 5, 3, 6)
         
 

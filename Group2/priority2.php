@@ -305,11 +305,10 @@ function plasmaSupply($locationInput, $eligibility, $mysqli)
 	{
 		$response = NULL;
 
-		if(!$check = $mysqli->prepare("SELECT days_plasma
-		FROM supply WHERE location=?")) {
-		echo "Prepare failed: (" . $check->errno . ")" . $check->error;
+		if(!$check = $mysqli->prepare("SELECT plasma FROM blooddb WHERE state=?")) {
+			//echo($check);
+			echo "Prepare failed: (" . $check->errno . ")" . $check->error;
 		} 
-
 		else {
 			$check->bind_param("s", $location);
 			if(!$check->execute()) {
@@ -350,8 +349,8 @@ function plateletSupply($locationInput, $eligibility, $mysqli)
 	{
 		$response = NULL;
 
-		if(!$check = $mysqli->prepare("SELECT days_platelets
-		FROM supply WHERE location=?")) {
+		if(!$check = $mysqli->prepare("SELECT platelets
+		FROM blooddb WHERE state=?")) {
 		echo "Prepare failed: (" . $check->errno . ")" . $check->error;
 		} 
 
@@ -392,8 +391,8 @@ function bloodSupply($locationInput, $eligibility, $mysqli)
 	{
 		$response = NULL;
 
-		if(!$check = $mysqli->prepare("SELECT days_whole
-		FROM supply WHERE location=?")) {
+		if(!$check = $mysqli->prepare("SELECT wholeblood
+		FROM blooddb WHERE location=?")) {
 		echo "Prepare failed: (" . $check->errno . ")" . $check->error;
 		} 
 
