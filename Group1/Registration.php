@@ -83,12 +83,24 @@
                     </div>
 
                     <div class="input-group">
+                      <span class="input-group-addon">State:</span>
+                      <select class="form-control" id="r_state" name="r_state">
+                        <option value="NY">New York</option>
+                        <option value="MD">Maryland</option>
+                        <option value="CA">California</option>
+                        <option value="VA">Virginia</option>
+                        <option value="DC">District of Columbia</option>
+                      </select>
+                    </div>
+
+                    <div class="input-group">
                         <label>Gender:</label>
                         <label class="radio-inline"><input type="radio" name="r_sex" value="male" />male</label>
                         <label class="radio-inline"><input type="radio" name="r_sex" value="female" />female</label>
                     </div>
                         
                     <input type="submit" class="btn btn-default" value="Register" id="registerButton" name="r_submit"/>
+
                 </div></form>
             </div>
         </div>

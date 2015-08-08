@@ -13,6 +13,7 @@ function setInputDate(stringDate, inputTagName) {
 
 $(document).ready( function() {
     
+
     //handler for viewing state blood supply
     $("#select_stateSupply").change(function () {
         var option_value = $("#select_stateSupply").val() ;

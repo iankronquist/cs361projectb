@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS bloodDB;
+DROP TABLE IF EXISTS blooddb;
 
-CREATE TABLE bloodDB (
+CREATE TABLE blooddb (
     id int NOT NULL AUTO_INCREMENT UNIQUE,
     state varchar(255) UNIQUE,
     blood_type_A int,
@@ -15,7 +15,7 @@ CREATE TABLE bloodDB (
     PRIMARY KEY (id)
 )ENGINE=InnoDB;
 
-INSERT INTO bloodDB (state, blood_type_A, blood_type_B, blood_type_AB, blood_type_O, wholeblood, platelets, drbloodcells, plasma)
+INSERT INTO blooddb (state, blood_type_A, blood_type_B, blood_type_AB, blood_type_O, wholeblood, platelets, drbloodcells, plasma)
 VALUES  ("NY", 5, 5, 5, 5, 6, 5, 3, 5), 
         ("MD", 3, 2, 5, 3, 6, 3, 5, 2),
         ("CA", 5, 5, 2, 5, 6, 5, 3, 5),

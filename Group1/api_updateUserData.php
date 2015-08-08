@@ -62,7 +62,10 @@
     if($weight)
         updateUser($conn, 'weight', $weight, $id);
     if($location)
-        updateUser($conn, 'location', $location, $id);
+    {
+        updateUser($conn, 'location', $location, $id); 
+        $_SESSION['location'] = $location;
+    }
     if($last_plasma)
         updateUser($conn, 'last_plasma', $last_plasma, $id);
     if($last_platelets)

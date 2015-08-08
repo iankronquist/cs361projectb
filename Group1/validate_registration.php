@@ -20,6 +20,7 @@ $password = isset($_POST['r_password']) ? $conn->real_escape_string($_POST['r_pa
 $fname = isset($_POST['r_fname']) ? $conn->real_escape_string($_POST['r_fname']) : null;
 $lname = isset($_POST['r_lname']) ? $conn->real_escape_string($_POST['r_lname']) : null;
 $sex = isset($_POST['r_sex']) ? $conn->real_escape_string($_POST['r_sex']) : null;
+$state = isset($_POST['r_state']) ? $conn->real_escape_string($_POST['r_state']) : null;
 $userID = null;
 
 
@@ -80,8 +81,8 @@ if(!$_POST['r_lname']) {
 //check for success
 if ($user_valid && $pass_valid && $fname_valid && $lname_valid) {
     //if all true, then attempt to register to DB
-    $stmt = $conn->prepare('INSERT INTO p2_users (username, password, fname, lname, sex) VALUES (?, ?, ?, ?, ?)');
-    $stmt->bind_param('sssss', $username, $password, $fname, $lname, $sex);
+    $stmt = $conn->prepare('INSERT INTO p2_users (username, password, fname, lname, sex, location) VALUES (?, ?, ?, ?, ?, ?)');
+    $stmt->bind_param('ssssss', $username, $password, $fname, $lname, $sex, $state);
     $stmt->execute();
     
     //get userID
@@ -92,6 +93,7 @@ if ($user_valid && $pass_valid && $fname_valid && $lname_valid) {
     $_SESSION['username'] = $username;
     $_SESSION['fname'] = $fname;
     $_SESSION['userID'] = $userID;
+    $_SESSION['location'] = $state;
     
     $status = "Success";
     $msgs[] = "$username successfully registered.";

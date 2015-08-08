@@ -60,7 +60,7 @@ $row = $result->fetch_array(MYSQLI_ASSOC);
         <?php require_once('navbar.php') ?>
         <div class="container">
             <div class="panel panel-default">
-                <div class="panel-heading"> BAsic User Info </div>
+                <div class="panel-heading"> Basic Information </div>
                 <div class="panel-body">
                     
                     <form>
@@ -72,19 +72,20 @@ $row = $result->fetch_array(MYSQLI_ASSOC);
                             </div>
                             
                             <div class="input-group">
-                                <span class="input-group-addon">Height:</span>
+                                <span class="input-group-addon">Height (cm):</span>
                                 <input type="number" class="updateUserFields form-control" min="0" max="9999" name="height" placeholder="<?php echo $height; ?>"/>
                             </div>
                             
                             <div class="input-group">
-                                <span class="input-group-addon">Weight:</span>
+                                <span class="input-group-addon">Weight (lbs):</span>
                                 <input type="number" class="updateUserFields form-control" min="0" max="9999" name="weight" placeholder="<?php echo $weight; ?>"/>
                             </div>
                             
                             <div class="input-group">
-                                <span class="input-group-addon">Location:</span>
+                                <span class="input-group-addon">State:</span>
                                 <input type="text" class="updateUserFields form-control" name="location" placeholder="<?php echo $location; ?>"/>
                             </div>
+                            <div class="location-error" id="location-error"></div>
                             
                         </div>
                     </form>

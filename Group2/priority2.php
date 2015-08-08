@@ -306,7 +306,6 @@ function plasmaSupply($locationInput, $eligibility, $mysqli)
 		$response = NULL;
 
 		if(!$check = $mysqli->prepare("SELECT plasma FROM blooddb WHERE state=?")) {
-			//echo($check);
 			echo "Prepare failed: (" . $check->errno . ")" . $check->error;
 		} 
 		else {
@@ -452,7 +451,7 @@ function bloodSupply($locationInput, $eligibility, $mysqli)
   </head>
   <link rel="stylesheet" type="text/css" href="priority2.css">
     <body>
-    	<?php require_once('..\Group1\navbar.php') ?>
+    	<?php require_once('../Group1/navbar.php') ?>
     	<div id="header"><h1>Countdown to Next Donation:</h1></div>
 
 	  	<div id=countdown>
