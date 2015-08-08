@@ -371,7 +371,7 @@ function plateletSupply($locationInput, $eligibility, $mysqli)
 
 				if ($supply < 6) {
 
-					echo $location . " is low on plasma!";
+					echo $location . " is low on platelets!";
 					return true;
 				}
 			}
