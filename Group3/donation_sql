@@ -1,0 +1,13 @@
+CREATE TABLE IF NOT EXISTS `donations` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `date_given` date NOT NULL,
+  `location` varchar(255) NOT NULL,
+  `blood_type` varchar(255) NOT NULL,
+  `donation_type` varchar(255) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `used` tinyint(1) NOT NULL,
+  `date_used` date NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
