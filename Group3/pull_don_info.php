@@ -29,6 +29,11 @@
 	}
 	$result=mysqli_query($dbc, $query);
 
+	//$date_given = NULL;
+	//$location = NULL;
+	//$blood_type = NULL;
+	//$donation_type = NULL;
+	//$amount = NULL;
         while($row = mysqli_fetch_array($result)) {
 			//$id = $row['id'];
 			//$user_id = $row['user_id'];
