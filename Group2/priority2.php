@@ -390,7 +390,7 @@ function bloodSupply($locationInput, $eligibility, $mysqli)
 		$response = NULL;
 
 		if(!$check = $mysqli->prepare("SELECT wholeblood
-		FROM blooddb WHERE location=?")) {
+		FROM blooddb WHERE state=?")) {
 		echo "Prepare failed: (" . $check->errno . ")" . $check->error;
 		} 
 
