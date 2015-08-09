@@ -1,10 +1,11 @@
 <?php
-	//READ THESE COMMENTS
-	//Database log in info needs to be changed
-	//$id used to auto login
-	//remove and uncomment part below once merged with final website
-	$id = 0;
-/*
+    ini_set('display_errors', 'On');
+    require_once('../Group1/connection.php');
+	$dbc = $conn;
+
+
+
+
 	if (session_status() === PHP_SESSION_NONE){session_start();}
 	if(isset($_SESSION['auth']) && $_SESSION['auth'] == 1) {
 	    $username = $_SESSION['username'];
@@ -14,10 +15,8 @@
 	    header("Location: Registration.php");
 	    exit();
 	}
-*/
 
-	$dbc = mysqli_connect('oniddb.cws.oregonstate.edu', 'hammarlp-db', '!!!!!!!!!!!', 'hammarlp-db') or
-                      die('Error connecting to MySQL server.');
+
 
 	
 
@@ -76,8 +75,8 @@
         <title></title>
 
         <!-- Bootstrap -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/mystyle.css" rel="stylesheet">
+        <link href="../Group1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../Group1/css/mystyle.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -90,7 +89,7 @@
         
     </head>
     <body>
-        <?php require_once('navbar.php') ?>
+        <?php require_once('../Group1/navbar.php') ?>
 
         
         <div class="container">
@@ -168,8 +167,8 @@
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/script.js"></script>
+        <script src="../Group1/js/bootstrap.min.js"></script>
+        <script src="../Group1/js/script.js"></script>
         
         
 
