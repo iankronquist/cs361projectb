@@ -1,8 +1,8 @@
 <?php
-    $dbhost = 'localhost';
-    $dbname = 'testdb';
-    $dbuser = 'root';
-    $dbpass = '';
+    $dbhost = 'oniddb.cws.oregonstate.edu';
+    $dbname = 'dinhd-db';
+    $dbuser = 'dinhd-db';
+    $dbpass = 'Mekmy0hd8jvLKeBL';
 
     //try to connect to database
     $conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
