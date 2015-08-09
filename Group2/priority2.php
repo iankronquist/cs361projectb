@@ -69,7 +69,6 @@ function getLastPlatelets($arg_1, $mysqli)
 	}
 
 	return $retDate;
-
 }
 
 function getLastDoubleRBC($arg_1, $mysqli)
