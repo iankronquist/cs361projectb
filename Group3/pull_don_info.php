@@ -20,7 +20,7 @@
 
 	
 
-	$query = "SELECT * FROM donations WHERE '$userID'=id";
+	$query = "SELECT * FROM donations WHERE $userID=user_id";
 	//$query = "INSERT INTO android_im_account (username, password) VALUES('$username', '$password')";
 
 
@@ -31,7 +31,7 @@
 
         while($row = mysqli_fetch_array($result)) {
 			//$id = $row['id'];
-			$user_id = $row['user_id'];
+			//$user_id = $row['user_id'];
 			$date_given = $row['date_given'];
 			$location = $row['location'];
 			$blood_type = $row['blood_type'];
@@ -43,7 +43,7 @@
 
         }
 
-	$query2 = "SELECT * FROM p2_users WHERE '$userID'=id";
+	$query2 = "SELECT * FROM p2_users WHERE $userID=user_id";
 	if(!mysqli_query($dbc, $query2)){
     		die('Failed');
   	}
