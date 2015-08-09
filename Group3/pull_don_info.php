@@ -20,7 +20,7 @@
 
 	
 
-	$query = "SELECT * FROM donations WHERE $userID=user_id";
+	$query = "SELECT * FROM donations WHERE '$userID'=user_id";
 	//$query = "INSERT INTO android_im_account (username, password) VALUES('$username', '$password')";
 
 
