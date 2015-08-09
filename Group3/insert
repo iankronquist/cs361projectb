@@ -1,0 +1,2 @@
+INSERT INTO `donations` (`id`, `user_id`, `date_given`, `location`, `blood_type`, `donation_type`, `amount`, `used`, `date_used`) VALUES
+(19, 6, '1999-12-01', 'here', 'O-', 'whole blood', 2, 1, '1999-12-01');
