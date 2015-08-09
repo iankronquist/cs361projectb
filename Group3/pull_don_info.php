@@ -43,7 +43,7 @@
 
         }
 
-	$query2 = "SELECT * FROM p2_users WHERE '$userID'=user_id";
+	$query2 = "SELECT * FROM p2_users WHERE '$userID'=id";
 	if(!mysqli_query($dbc, $query2)){
     		die('Failed');
   	}
